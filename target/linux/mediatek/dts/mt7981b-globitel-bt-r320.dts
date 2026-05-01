@@ -9,7 +9,7 @@
 
 / {
 	model = "Globitel BT-R320";
-	compatible = "bt,r320", "mediatek,mt7981";
+	compatible = "globitel,bt-r320", "mediatek,mt7981";
 
 	aliases {
 		serial0 = &uart0;
