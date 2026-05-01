@@ -61,6 +61,7 @@ mediatek_setup_interfaces()
 	routerich,ax3000|\
 	routerich,ax3000-ubootmod|\
 	routerich,be7200|\
+	globitel,bt-r320|\
 	tenbay,wr3000k)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
 		;;
@@ -314,6 +315,11 @@ mediatek_setup_macs()
 		;;
 	yuncore,ax835)
 		label_mac=$(mtd_get_mac_binary "Factory" 0x4)
+		;;
+	globitel,bt-r320)
+		lan_mac=$(mmc_get_mac_binary factory 0x2a)
+		wan_mac=$(mmc_get_mac_binary factory 0x24)
+		label_mac=$lan_mac
 		;;
 	esac
 
