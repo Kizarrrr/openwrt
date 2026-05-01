@@ -1721,6 +1721,19 @@ define Device/glinet_gl-xe3000
 endef
 TARGET_DEVICES += glinet_gl-xe3000
 
+define Device/globitel_bt-r320
+  DEVICE_VENDOR := Globitel
+  DEVICE_MODEL := Globitel BT-R320
+  DEVICE_DTS := globitel,bt-r320
+  DEVICE_DTS_DIR := ../dts
+  DEVICE_PACKAGES := kmod-usb3 kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware automount coremark blkid blockdev fdisk f2fsck mkf2fs f2fsck kmod-fs-f2fs kmod-mmc automount  
+  KERNEL := kernel-bin | lzma | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
+  KERNEL_INITRAMFS := kernel-bin | lzma | \
+	fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd | pad-to 64k
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+endef
+TARGET_DEVICES += globitel_bt-r320
+
 define Device/h3c_magic-nx30-pro
   DEVICE_VENDOR := H3C
   DEVICE_MODEL := Magic NX30 Pro
