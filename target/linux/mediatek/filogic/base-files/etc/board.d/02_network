@@ -53,6 +53,7 @@ mediatek_setup_interfaces()
 	creatlentem,clt-r30b1|\
 	creatlentem,clt-r30b1-112m|\
 	cudy,wr3000-v1|\
+	globitel,bt-r320|\
 	jcg,q30-pro|\
 	keenetic,kn-3711|\
 	keenetic,kn-3811|\
@@ -256,6 +257,11 @@ mediatek_setup_macs()
 	bananapi,bpi-r4|\
 	bananapi,bpi-r4-lite)
 		wan_mac=$(macaddr_add $(cat /sys/class/net/eth0/address) 1)
+		;;
+	globitel,bt-r320)
+		lan_mac=$(mmc_get_mac_binary factory 0x2a)
+		wan_mac=$(mmc_get_mac_binary factory 0x24)
+		label_mac=$lan_mac
 		;;
 	h3c,magic-nx30-pro)
 		wan_mac=$(mtd_get_mac_ascii pdt_data_1 ethaddr)
